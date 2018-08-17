@@ -1,0 +1,27 @@
+function sym(args) {
+  let A = Array.prototype.slice.call(arguments);
+  //console.log(A);
+  var uniques = function(i, j) {
+
+    function fArrayed(i, j) {
+      return i.filter(function(item) {
+        return j.indexOf(item) === -1;
+      });
+    }
+
+  return fArrayed(i, j).concat(fArrayed(j, i));
+
+  }
+  //console.log(uniques(A[0], A[1]));
+  var synthArray = A.reduce(uniques, []);
+  //console.log(synthArray);
+  //console.log(uniques);
+  var finalArray = synthArray.filter(function(value, index, self) {
+    return self.indexOf(value) === index;
+  });
+  
+  //console.log(finalArray);
+  return finalArray;
+}
+
+sym([1, 2, 3], [5, 2, 1, 4]);
