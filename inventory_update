@@ -1,0 +1,35 @@
+function updateInventory(arr1, arr2) {
+    // All inventory must be accounted for or you're fired!
+    // Create a flat array to check for null values
+    var flatInv = Array.prototype.concat.apply([],arr1);
+
+//Take each element of new Inv and check for matches
+    for (var i = 0; i < arr2.length; i++) {
+        if (flatInv.indexOf(arr2[i][1]) !== -1) {
+          const pos = Math.floor((flatInv.indexOf(arr2[i][1])/2));
+          //console.log(pos);
+          arr1[pos][0] += arr2[i][0];
+          continue;
+        }
+        arr1.push(arr2[i]); 
+  }
+  //sort arr1 by item name
+    arr1.sort(function(a,b) {return a[1] > b[1];});
+    console.log(arr1);
+    return arr1;
+}
+
+// Example inventory lists
+var curInv = [
+    [21, "Bowling Ball"],
+    [2, "Dirty Sock"],
+    [1, "Hair Pin"],
+    [5, "Microphone"]
+];
+
+var newInv = [
+    [2, "Hair Pin"],
+    [3, "Half-Eaten Apple"],
+    [67, "Bowling Ball"],
+    [7, "Toothpaste"]
+];
